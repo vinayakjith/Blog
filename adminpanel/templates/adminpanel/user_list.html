@@ -1,0 +1,54 @@
+{% extends 'adminpanel/admin_base.html' %}
+{% block title %}
+Famous Tourist Spots | Users
+{% endblock %}
+{% block content %}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Username</th>
+      <th scope="col">First name</th>
+      <th scope="col">Last name</th>
+      <th scope="col">Status</th>
+      <th colspan="2">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for user in users %}
+    <tr>
+      <th scope="row">{{ user.id }}</th>
+      <td>{{ user.username }}</td>
+      <td>{{ user.first_name }}</td>
+      <td>{{ user.last_name }}</td>
+      <td>
+        {% if user.is_active %}
+        <span class="text-success">Active</span>
+        {% else %}
+        <span class="text-danger">Inactive</span>
+        {% endif %}
+      </td>
+      <td><a href="{% url 'adminpanel:view_user' user.id %}" class="btn btn-primary">View User</a></td>
+      <td>
+        <form method="POST" action="{% url 'adminpanel:user_status' user.id %}">
+          {% csrf_token %}
+          {% if user.is_active %}
+          <button type="submit" class="btn btn-warning">Deactivate</button>
+          {% else %}
+          <button type="submit" class="btn btn-warning">Activate</button>
+          {% endif %}
+
+        </form>
+      </td>
+    </tr>
+
+  {% empty %}
+    <tr>
+      <td colspan="4" class="text-center">No users found</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

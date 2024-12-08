@@ -1,0 +1,38 @@
+{% extends 'userpanel/user_base.html' %}
+{% block title %}
+Famous Tourist Spots
+{% endblock %}
+{% block content %}
+
+
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table class="table-responsive p-5 m-3" height="500px" width="1000px">
+        <tr>
+            <th><label class="form-label">Title</label></th>
+            <td><input type="text" name="blog_title" class="form-control" value="{{ blog.title }}"/></td>
+        </tr>
+        <tr>
+            <th><label class="form-label">Content</label></th><td><textarea rows="4" cols="4" name="blog_content" required class="form-control" >{{ blog.content }}</textarea></td>
+        </tr>
+        <tr>
+            <th><label class="form-label">Image</label></th><td><input type="file" name="blog_image" class="form-control" required/></td>
+        </tr>
+        <tr>
+            <th><label class="form-label">Author</label></th>
+            <td>
+                <select name="blog_author" class="form-control">
+                    {% for user in users %}
+                    <option value="{{ user.id }}">{{user.username}}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr style="text-align: center;">
+            <td colspan="2">
+                <button type="submit" class = "btn btn-primary">Save</button></td>
+            </tr>
+    </table>
+</form>
+{% endblock %}

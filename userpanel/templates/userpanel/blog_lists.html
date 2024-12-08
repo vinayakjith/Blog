@@ -1,0 +1,37 @@
+{% extends 'userpanel/user_base.html' %}
+{% block title %}
+Famous Tourist Spots| List
+{% endblock %}
+{% block content %}
+
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Title</th>
+      <th scope="col">Author</th>
+      <th scope="col">Last Updated At</th>
+      <th scope="col">Status</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for blog in blog %}
+    <tr>
+      <th scope="row">{{ blog.id }}</th>
+      <td>{{ blog.title }}</td>
+      <td>{{ blog.author }}</td>
+      <td>{{ blog.updated_at }}</td>
+      <td>{{ blog.status }}</td>
+      <td><a href="{% url 'userpanel:view_blog' blog.id %}" class="btn btn-primary">View Blog</a></td>
+    </tr>
+  {% empty %}
+    <tr>
+      <td colspan="4" class="text-center">No users found</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

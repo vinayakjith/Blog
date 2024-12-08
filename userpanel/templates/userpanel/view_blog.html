@@ -1,0 +1,58 @@
+{% extends 'userpanel/user_base.html' %}
+{% block title %}
+Famous Tourist Spots
+{% endblock %}
+{% block content %}
+
+<style>
+  .comment{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: large;
+  }
+  .blog{
+    font-family: sans-serif;
+    text-align: justify;
+    color: black;
+    font-size: large;
+  }
+</style>
+
+<div class="card mb-3" style="width: 100%;">
+  <h1 class="card-title" style="text-align: center; font-style: italic; margin-top: 10px; color: black;"><b>{{ blog.title }}</b></h1>
+  <img src="{{ blog.blog_image.url }}" class="card-img-top" alt="{{ blog.title }}" width="100px" height="500px">
+  
+  <div class="card-body">
+    <div class="blog">
+      <p class="card-text">{{ blog.content }}</p>
+      <p><a href="{% url 'userpanel:blog_edit' blog.id %}" class="btn btn-primary">Edit blog</a></p>
+      <p class="card-text">
+        <small class="text-body-secondary">Author: {{ blog.author }} <br> Last updated: {{ blog.updated_at }}</small>
+      </p>
+      
+  
+      <div class="form-container">
+        <h2>Add a Comment</h2>
+        <form method="post" class="m-3" enctype="multipart/form-data">
+          {% csrf_token %}
+          {{ form.as_p }}  
+          <button type="submit" class="btn btn-primary">Submit Comment</button>
+        </form>
+      </div>
+
+     
+      <h3>Comments:</h3>
+      <div class="comments-section">
+        {% for comment in comments %}
+          <div class="comment">
+            <p><strong>{{ comment.user }}:</strong> {{ comment.comment }}</p>
+            <p><small>Posted on: {{ comment.created_at }}</small></p>
+          </div>
+        {% empty %}
+          <p>No comments yet. Be the first to comment!</p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'sitevisitor/site_base.html' %}
+{% block title %}
+User Registration
+{% endblock %}
+{% block content %}
+
+
+
+<style>
+  .form-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 80vh;
+  }
+  table {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-collapse: separate;
+      border-spacing: 15px;
+      position: relative;
+        top: 50%;
+        left: 50%;
+  }
+  h2 {
+      text-align: center;
+  }
+</style>
+
+<div class="form-container">
+    <form method="POST" action="{% url 'sitevisitor:login' %}">
+        {% csrf_token %}
+        <table class="register-table">
+            <tr>
+                <td colspan="2"><h2>User Registration</h2></td>
+            </tr>
+            <tr>
+                <td><label for="username">Username:</label></td>
+                <td><input type="text" id="username" name="username" required></td>
+            </tr>
+            <tr>
+                <td><label for="email">Email:</label></td>
+                <td><input type="email" id="email" name="email" required></td>
+            </tr>
+            <tr>
+                <td><label for="password1">Password:</label></td>
+                <td><input type="password" id="password1" name="password1" required></td>
+            </tr>
+            <tr>
+                <td><label for="password2">Confirm Password:</label></td>
+                <td><input type="password" id="password2" name="password2" required></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input class="btn btn-primary" type="submit" value="Register" >
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+{% endblock %}

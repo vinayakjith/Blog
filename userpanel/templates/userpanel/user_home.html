@@ -1,0 +1,60 @@
+{% extends 'userpanel/user_base.html' %}
+{% block title %}
+Famous Tourist Spots
+{% endblock %}
+{% block content %}
+
+
+
+<style>
+
+  .comment{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: large;
+  }
+  .blog{
+    font-family:sans-serif;
+    text-align: justify;
+    color: black;
+    font-size: large;
+  }
+
+</style>
+<p><a href="{% url 'userpanel:my_blogs' user.id %}" class="btn btn-primary">My blogs</a></p>
+
+{% for blog in blogs %}
+<div class="card mb-3" style="width: 100%;">
+  <h1 class="card-title" style="text-align: center;font-style: italic;margin-top: 10px; color: black;"><b>{{ blog.title }}</b></h1>
+  <img src="{{ blog.blog_image.url }}" class="card-img-top" alt="{{ blog.title }}" width="100px" height=" 500px">
+  <div class="card-body">
+    <div class="blog">
+    <p class="card-text">{{ blog.content }}</p>
+    <p><a href="{% url 'userpanel:view_blog' blog.id %}" class="btn btn-primary">View blog</a></p>
+
+    <p class="card-text"><small class="text-body-secondary">Author : {{ blog.author}} <br> {{ blog.updated_at }}</small></p>
+    <p>
+      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample" aria-expanded="false" aria-controls="collapseWidthExample">
+        Comments
+      </button>
+    </p>
+    <div class="comment">
+    <div style="min-height: 120px;">
+      <div class="collapse collapse-horizontal" id="collapseWidthExample">
+        <div class="card card-body" style="width: 300px;">
+          {% for comment in comments %}
+            {% if comment.blog == blog %}
+               <p style="color: rgb(17, 17, 17); font-weight:lighter;">{{ comment.user }}</p>
+               <p style="font-size: small;"> {{ comment.updated_at }}</p>
+              <p style="color: rgb(12, 12, 12); font-weight: bold;">{{ comment.comment }}</p>             
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'sitevisitor/site_base.html' %}
+{% block title %}
+ADMIN| Famous Tourist Spots
+{% endblock %}
+
+{% block content %}
+
+
+<style>
+
+  .comment{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: large;
+  }
+
+</style>
+
+<h1> Dashboard</h1>
+
+<p><a class="link-offset-2 link-underline link-underline-opacity-0" href="{% url 'adminpanel:admin_home' %}">Adminpanel</a></p>
+<p><a class="link-offset-2 link-underline link-underline-opacity-10" href="{% url 'sitevisitor:site_home' %}">Sitevisitor</a></p>
+<p><a class="link-offset-2 link-underline link-underline-opacity-25" href="{% url 'userpanel:user_home' %}">Userpanel</a></p>
+{% endblock %}

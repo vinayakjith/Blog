@@ -1,0 +1,49 @@
+{% extends 'adminpanel/admin_base.html' %}
+{% block title %}
+Famous Tourist Spots
+{% endblock %}
+{% block content %}
+
+<style>
+  .comment{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: large;
+  }
+  .blog{
+    font-family: sans-serif;
+    text-align: justify;
+    color: black;
+    font-size: large;
+  }
+</style>
+
+<div class="card" style="width: 100%;">
+  
+  <div class="card-body">
+    <div class="blog">
+
+     
+      <h3>Comments:</h3>
+      <div class="comments-section">
+        {% for comment in comments %}
+          <div class="comment">
+            <p><strong>{{ comment.user }}:</strong> {{ comment.comment }}</p>
+            <p><small>Posted on: {{ comment.created_at }}</small></p>
+            <form method="POST" action="{% url 'adminpanel:hide_comment' comment.id %}">
+                {% csrf_token %}
+                {% if comment.status == 'hide' %} 
+                <button type="submit" class="btn btn-danger">Show</button>
+              {% else %}
+                <button type="submit" class="btn btn-dark">Hide</button>
+              {% endif %}
+            </form>          
+        </div>
+        {% empty %}
+          <p>No comments yet. </p>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

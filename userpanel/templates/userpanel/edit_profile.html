@@ -1,0 +1,40 @@
+{% extends 'userpanel/user_base.html' %}
+{% block title %}
+Famous Tourist Spots
+{% endblock %}
+{% block content %}
+
+
+
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <table class="table-responsive p-5 m-3" height="500px" width="500px">
+      <tr>
+          <th><label class="form-label">Name</label></th><td><input type="text" name="profile_username" class="form-control" value="{{ profile.user.username }}"/></td>
+      </tr>
+      <tr>
+          <th><label class="form-label">Description</label></th><td><textarea rows="4" cols="4" name="profile_description"  class="form-control" >{{ profile.profile_description }}</textarea></td>
+      </tr>
+      <tr>
+        <th><label class="form-label">Email</label></th><td><input type="text" name="profile_username" class="form-control" value="{{ profile.user.email }}"/></td>
+    </tr>
+      <th><label class="form-label">phone</label></th><td><input type="number" name="profile_phone" class="form-control" value="{{ profile.phone }}"/></td>
+  </tr>
+  <tr>
+          <th><label class="form-label">Profile Image</label></th><td><input type="file" name="profile_image" class="form-control" /></td>
+      </tr>
+      <tr>
+        <th><label class="form-label">Proof Image</label></th><td><input type="file" name="proof_image" class="form-control" /></td>
+    </tr>
+
+      <tr style="text-align: center;"><td colspan="2"><button type="submit" class = "btn btn-primary">Save</button></td></tr>
+    </table>
+</form>
+
+{% endblock %}
+
+
+
+
+
+

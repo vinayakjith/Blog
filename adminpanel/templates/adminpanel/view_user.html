@@ -1,0 +1,29 @@
+{% extends 'adminpanel/admin_base.html' %}
+{% block title %}
+Famous Tourist Spots
+{% endblock %}
+
+{% block content %}
+
+    <h2>User Details</h2>
+
+    <table>
+           <tr>
+            <th>Username: </th>
+            <td>{{ user.username }}</td>
+        </tr>
+        <tr>
+            <th>Name:</th>
+            <td>{{ user.first_name }} {{ user.last_name }}</td>
+        </tr>
+        <tr>
+            <th>Email:</th>
+            <td>{{ user.email }}</td>
+        </tr>
+
+ 
+    </table>
+  
+
+    <a href="{% url 'adminpanel:user_list' %}" class="btn btn-secondary">Back to User List</a>
+{% endblock %}

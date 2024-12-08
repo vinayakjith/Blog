@@ -1,0 +1,60 @@
+{% extends 'sitevisitor/site_base.html' %}
+{% block title %}
+Famous Tourist Spots
+{% endblock %}
+{% block content %}
+    
+<style>
+      body{
+        text-align:center;
+      }
+  .form-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 80vh; /* Full height minus header/footer for vertical centering */
+  }
+  table {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        border-collapse: separate;
+        border-spacing: 15px;
+        position:relative;
+        top: 50%;
+        left: 30%;
+    }
+    h2 {
+        text-align: center;
+    }
+
+</style>
+
+<!-- Wrap the form inside a div container for centering -->
+<div class="form-container">
+    <form method="POST" action="{% url 'userpanel:user_login' %}">
+        {% csrf_token %}
+        <table class="table-responsive p-5 m-3" height="300px" width="500px" >
+            <tr>
+                <td colspan="3"><h2>Login to your Blog Page</h2></td>
+            </tr>
+            <tr>
+                <td><label for="username">Username</label></td>
+                <td><input type="text" id="username" name="username"></td>
+            </tr>
+            <tr>
+                <td><label for="password">Password</label></td>
+                <td><input type="password" id="password" name="password"></td>
+            </tr>
+            
+            <tr>
+              <td><input type="submit" value="Login"></button></td>
+              <td><a href="{% url 'sitevisitor:forgot_password' %}" class="btn btn-default" >Forgot Password</a></td>
+              <td><a href="{% url 'sitevisitor:registration' %}" class="btn btn-default">Register</a></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+{% endblock %}
