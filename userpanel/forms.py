@@ -117,11 +117,6 @@ class Blogform(forms.ModelForm):
         label='Blog Image',
         widget=forms.ClearableFileInput(attrs={'class':'form-control'})    
     )
-    status = forms.ChoiceField(
-        choices=[('Publish', 'Publish'), ('Draft', 'Draft')],  
-        label="Status",
-        widget=forms.Select(attrs={'class': 'form-control'})
-    )
 
     class Meta:
         model=Blog
